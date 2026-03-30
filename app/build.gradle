@@ -1,0 +1,53 @@
+plugins {
+    id 'com.android.application'
+}
+
+android {
+    namespace 'ci.monsupermarche.app'
+    compileSdk 34
+
+    defaultConfig {
+        applicationId "ci.monsupermarche.app"
+        minSdk 21                    // Android 5.0+ (couvre 99% des appareils CI)
+        targetSdk 34
+        versionCode 1
+        versionName "1.0.0"
+    }
+
+    signingConfigs {
+        release {
+            // ── À remplir après génération du keystore ──
+            // storeFile     file("mon-supermarche-ci.keystore")
+            // storePassword "votre_mot_de_passe"
+            // keyAlias      "monsupermarcheci"
+            // keyPassword   "votre_mot_de_passe"
+        }
+    }
+
+    buildTypes {
+        debug {
+            debuggable true
+        }
+        release {
+            minifyEnabled true
+            shrinkResources true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            // signingConfig signingConfigs.release
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_11
+        targetCompatibility JavaVersion.VERSION_11
+    }
+
+    packagingOptions {
+        resources {
+            excludes += ['/META-INF/{AL2.0,LGPL2.1}']
+        }
+    }
+}
+
+dependencies {
+    implementation 'androidx.appcompat:appcompat:1.6.1'
+}

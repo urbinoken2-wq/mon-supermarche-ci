@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<network-security-config>
+    <!-- Autoriser HTTPS pour tous les domaines -->
+    <base-config cleartextTrafficPermitted="false">
+        <trust-anchors>
+            <certificates src="system" />
+        </trust-anchors>
+    </base-config>
+
+    <!-- Exception pour votre domaine si HTTP (à supprimer si vous avez HTTPS) -->
+    <!-- <domain-config cleartextTrafficPermitted="true">
+        <domain includeSubdomains="true">votre-domaine.ci</domain>
+    </domain-config> -->
+
+    <!-- WhatsApp et APIs externes -->
+    <domain-config cleartextTrafficPermitted="false">
+        <domain includeSubdomains="true">wa.me</domain>
+        <domain includeSubdomains="true">api.whatsapp.com</domain>
+    </domain-config>
+</network-security-config>
